@@ -7,7 +7,8 @@ mod server;
 
 #[cfg(feature = "transport")]
 pub mod transport;
-
+#[cfg(feature = "bevy")]
+use bevy_ecs::component::Component;
 pub use channel::{ChannelConfig, DefaultChannel, SendType};
 pub use error::{ChannelError, ClientNotFound, DisconnectReason};
 pub use remote_connection::{ConnectionConfig, NetworkInfo, RenetClient, RenetConnectionStatus};
@@ -17,6 +18,7 @@ pub use bytes::Bytes;
 
 /// Unique identifier for clients.
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Ord, PartialOrd)]
+#[cfg_attr(feature = "bevy", derive(Component))]
 pub struct ClientId(u64);
 
 impl ClientId {
@@ -57,7 +59,7 @@ impl<'de> serde::Deserialize<'de> for ClientId {
     }
 }
 
-#[cfg(feature = "bevy")]
-impl bevy_ecs::component::Component for ClientId {
-    type Storage = bevy_ecs::component::TableStorage;
-}
+// #[cfg(feature = "bevy")]
+// impl bevy_ecs::component::Component for ClientId {
+//     type Storage = bevy_ecs::component::TableStorage;
+// }
