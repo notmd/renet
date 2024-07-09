@@ -20,13 +20,13 @@ name = "simple"
 required-features = ["serde", "transport"]
 
 [dependencies]
-bevy = { git = "https://github.com/bevyengine/bevy.git", default-features = false }
+bevy = { version = "0.14", default-features = false }
 renet = { path = "../renet", version = "0.0.15", default-features = false, features = [
     "bevy",
 ] }
 
 [dev-dependencies]
-bevy = { git = "https://github.com/bevyengine/bevy.git", default-features = false, features = [
+bevy = { version = "0.14", default-features = false, features = [
     "bevy_core_pipeline",
     "bevy_render",
     "bevy_asset",
